@@ -1,0 +1,37 @@
+    <!-- agregar_desayuno.html -->
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Agregar Desayuno</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesDesayuno.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Agregar Desayuno</h1>
+            <table>
+                <tr>
+                    {% for column in column_names %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+                {% for desayuno in desayunos %}
+                <tr>
+                    {% for value in desayuno %}
+                    <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+            <br>
+            {% if message %}
+            <div class="message">{{ message }}</div>
+            {% endif %}
+            <button id="agregarBtn">Agregar</button>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    </body>
+    </html>
+
+    

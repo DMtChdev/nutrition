@@ -1,0 +1,31 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: -350px; /*Half the width of your element*/
+    position: absolute;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+th:first-child,
+td:first-child {
+    padding-left: 0;
+}
+@media (max-width: 768px) {
+    table {
+        max-width: 100%;
+    }
+    td:last-child {
+        word-break: break-word;
+    }
+}

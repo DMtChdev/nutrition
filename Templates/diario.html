@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diario</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesMediaManana.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Diario</h1>
+        
+        <div style="text-align: center;">
+            <form method="POST" action="{{ url_for('mostrar_diario') }}">
+                <button type="submit" name="fecha_anterior" value="{{ fecha_anterior.isoformat() }}">&#8249;</button>
+                <span>{{ fecha_hoy }}</span>
+                <button type="submit" name="fecha_siguiente" value="{{ fecha_siguiente.isoformat() }}">&#8250;</button>
+            </form>
+        </div>
+        
+        
+        {% if dia_info %}
+        <table>
+            <tr>
+                <th style="width: 10%;">Tipo Comida</th>
+                {% for column_name, column_value in dia_info.items() %}
+                {% if column_name not in ['tipodesayuno', 'id', 'comida', 'merienda', 'cena', 'fecha', 'desayuno', 'media manana','media manana nombre'] %}
+                <th>{{ column_name }}</th>
+                {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>{{ dia_info['tipodesayuno'] }}</td>
+                {% for column_name, column_value in dia_info.items() %}
+                {% if column_name not in ['tipodesayuno', 'id', 'comida', 'merienda', 'cena', 'fecha', 'desayuno', 'media manana','media manana nombre'] %}
+                {% if column_name == 'fruta_nombre' %}
+                <td>{{ column_value }}</td>
+                {% else %}
+                <td>{{ column_value }}</td>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Media Mañana</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                {% for column_name, column_value in dia_info.items() %}
+                {% if column_name not in ['tipodesayuno', 'id', 'comida', 'merienda', 'cena', 'fecha', 'desayuno', 'media manana'] %}
+                {% if column_name == 'media manana nombre' %}
+                <td>{{ column_value }}</td>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </tr>
+        </table>
+        {% else %}
+        <p>No existen registros para el día de hoy.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

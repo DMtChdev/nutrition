@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar Media Mañana</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Agregar Media Mañana</h1>
+        <form action="/agregar_media_manana" method="POST">
+            <!-- Agregar campo de selección de alimento -->
+            <label for="fruta">Seleccione una fruta:</label>
+            <select name="fruta" id="fruta">
+                {% for alimento in alimentos_fruta %}
+                {{ alimento.id }}<br>{{ alimento }}
+
+                <option value="{{ alimento[0] }}">{{ alimento[1] }}</option>
+                {% endfor %}
+            </select>
+            
+            <!-- Otros campos del formulario -->
+            <!-- ... -->
+            <input type="submit" value="Guardar">
+        </form>
+    </div>
+</body>
+</html>
